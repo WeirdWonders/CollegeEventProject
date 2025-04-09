@@ -98,7 +98,13 @@
     $stmt->close();
     $conn->close();
 
-    sendResultInfoAsJson(json_encode($events));
+    // Add eventType to the response
+    $response = [
+        "eventType" => ucfirst($eventType),
+        "events" => $events
+    ];
+
+    sendResultInfoAsJson(json_encode($response));
 
     function getRequestInfo()
     {
